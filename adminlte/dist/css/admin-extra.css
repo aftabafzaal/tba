@@ -1,0 +1,90 @@
+/**************/
+
+.widget-user .widget-user-image {
+    height: 100px;
+    display: block;
+    width: 100px;
+    margin-left: -50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #ccc;
+}
+.widget-user .widget-user-image img {
+    border-radius: 50%;
+    min-height: 120px;
+    min-width: 120px;
+    border-radius: 0;
+    margin: -10px;
+}
+.hed .actions div {
+    width: auto;
+}
+
+.hed h3 {
+    display: inline-block;
+    float: left;
+    margin: 0;
+}
+
+.pul-rgt {
+    float: right;
+}
+
+
+.p0 { padding:0; }
+
+.btn-primary {
+    background-color: #b08f6b;
+    color: #fff;
+    border-color: #b08f6b;
+    font-size: 16px;
+}
+
+.btn.approve {
+    background-color: #3fab24;
+    border-color: #3fab24;
+    color: #fff;
+}
+
+.btn.dissapprove {
+    background-color: #D00;
+    color: #fff;
+    border-color: #d00;
+}
+
+
+.btn-default {
+    border-color: #b08f6b;
+    background-color: transparent;
+    color: #333;
+    font-size: 16px;
+}
+
+.skin-blue-light .main-header .navbar {
+    background-color: #b08f6b;
+}
+
+.skin-blue-light .main-header .logo {
+    background-color: #b08f6b;
+}
+
+.box.box-primary {
+    border-color: #b08f6b;
+
+}
+
+
+.client__img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.client__img .__img {
+    border: 5px solid #b08f6b;
+    overflow: hidden;
+}
+
+.widget-user .box-footer {
+    text-align: center;
+}
