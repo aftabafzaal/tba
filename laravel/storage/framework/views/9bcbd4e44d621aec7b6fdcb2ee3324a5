@@ -1,0 +1,5 @@
+<?php if($product->sale==1 && $product->price>$product->salePrice): ?>
+    <span id="price"><?php echo $product->salePrice?></span>
+    <?php else: ?>
+    <span id="price"><?php echo $product->price?></span>
+<?php endif; ?>

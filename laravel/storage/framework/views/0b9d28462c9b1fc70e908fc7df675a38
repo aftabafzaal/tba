@@ -1,0 +1,37 @@
+<?php
+$currency = Config::get('params.currency');
+//use App\Charges;
+//$subscription_fee = Charges::where('type','subscription_fee')->lists('rate');
+//d($subscription_fee[0],1);
+$required = 'required';
+?>
+<script>
+<?php
+if (isset(Auth::user()->id)) {
+    echo 'jQuery("body").addClass("login00");';
+} else {
+    echo 'jQuery("body").addClass("logout");';
+}
+?>
+</script>
+<section class="hdr-top-area">
+    <div class="container">
+        <a class="navbar-brand pul-lft" href="<?php echo e(url('/')); ?>"><img src="<?php echo e(asset('')); ?>/front/images/logo.png" alt="logo" class="broken-image"/></a>
+
+        <div class="hdr-top__contact / clrlist list-icon pul-rgt">
+            <ul>
+                <?php
+                if (isset(Auth::user()->id) && Auth::user()->role->role == "user") {
+                    ?>
+                    <li>
+                        <a href="<?php echo e(url('athlete/register')); ?>" class="white"><i class="fa"><img src="<?php echo e(asset('')); ?>/front/images/hdricon3.png" id="hdr-icon0" alt="" /></i><span><strong>Register now</strong><br>To become Athlete </span></a></li>
+                    <?php }
+                ?>
+                <li><i class="fa"><img src="<?php echo e(asset('')); ?>/front/images/inrhdricon1.png" id="hdr-icon1" alt="" /></i> <span><strong>WORKING HOURS</strong><br> Monday-Friday 9AM TO 6PM</span></li>
+                <li><i class="fa"><img src="<?php echo e(asset('')); ?>/front/images/inrhdricon2.png" id="hdr-icon2" alt="" /></i> <span><strong>CALL US NOW</strong><br> 414 803 4327</span></li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+

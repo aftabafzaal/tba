@@ -1,0 +1,20 @@
+<div class="col-xs-4 border-right p0">
+    <?php if($user->status == '1'): ?>
+    <a href="<?php echo url('admin/user/disapprove/' . $user->id); ?>" class="btn btn-sm btn-default dissapprove"> Disapprove</a>
+    <?php else: ?>
+    <a href="<?php echo url('admin/user/approve/' . $user->id); ?>" class="btn btn-sm  btn-default approve">Approve</a>
+    <?php endif; ?>
+</div>
+<?php if($user->role_id == '3'): ?>
+<div class="col-xs-4 border-right">
+    <a href="<?php echo url('admin/user/edit/' . $user->id); ?>" class="btn btn-sm  btn-default commission">Commission</a>
+</div>
+
+<div class="col-xs-4">
+    <?php if($user->availability == '1'): ?>
+    <a href="<?php echo url('admin/user/unavailable/' . $user->id); ?>" class="btn btn-sm btn-default dissapprove"> Unavailable</a>
+    <?php else: ?>
+    <a href="<?php echo url('admin/user/available/' . $user->id); ?>" class="btn btn-sm  btn-default approve"> Available</a>
+    <?php endif; ?>
+</div>
+<?php endif; ?>

@@ -1,0 +1,115 @@
+<?php $__env->startSection('content'); ?>
+<section class="dashboard-area">
+    <div class="container">
+        <div class="dash__lft col-sm-3">
+            <div class="dash__tabs">
+                <?php echo $__env->make('front/common/left', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            </div>
+        </div>
+        <div class="dash__rgt col-sm-9">
+            <div id="profile" >
+                <div class="profile__dtl col-sm-12">
+                    <div class="profile__btns clrlist">
+                        <ul class="pul-rgt">
+                            <?php if($user->status == 1): ?>
+                            <li><a href="#" class="profile__approve__btn"><i class="fa fa-check-square-o"></i>Approved</a></li>
+                            <?php endif; ?>
+                            <li><a href="<?php echo e(url('address/edit')); ?>" class="profile__edit__btn"><i class="fa fa-pencil"></i>Edit</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="profile__info">
+                        <!--table>
+                            <tbody>
+                                <tr>
+                                    <td for="Updates 1">Address 1:</td>
+                                    <td><?php echo e($address->address); ?></td>
+                                </tr>
+                                <tr>
+                                    <td for="Updates 1">Address 2:</td>
+                                    <td><?php echo e($address->address2); ?></td>
+                                </tr>
+                                <tr>
+                                    <td for="Updates 1">Country:</td>
+                                    <td><?php foreach($countries as $country): ?>
+                                    <?php if($address->country == $country->id): ?>  
+                                    <?php echo e($country->name); ?>
+
+                                    <?php endif; ?>
+                                    <?php endforeach; ?></td>
+                                </tr>
+                                <tr>
+                                    <td for="Updates 1">State:</td>
+                                    <td><?php foreach($states as $state): ?>
+                                    <?php if($address->state == $state->code): ?>  
+                                    <?php echo e($state->title); ?>
+
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td for="Updates 1">City:</td>
+                                    <td><?php echo e($address->city); ?></td>
+                                </tr>
+                                <tr>
+                                    <td for="Updates 1">Zipcode:</td>
+                                    <td><?php echo e($address->zip); ?></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table-->
+
+                        <div class="label-box col-sm-6">
+                            <h5>Address 1:</h5>
+                            <h4><?php echo e($address->address); ?></h4>
+                        </div>
+                        <div class="label-box col-sm-6">
+                            <h5>Address 2:</h5>
+                            <h4><?php echo e($address->address2); ?></h4>
+                        </div>
+                        <div class="label-box col-sm-3">
+                            <h5>Country:</h5>
+                            <h4><?php foreach($countries as $country): ?>
+                                <?php if($address->country == $country->id): ?>  
+                                <?php echo e($country->name); ?>
+
+                                <?php endif; ?>
+                                <?php endforeach; ?></h4>
+                        </div>
+                        <div class="label-box col-sm-3">
+                            <h5>State:</h5>
+                            <h4><?php foreach($states as $state): ?>
+                                <?php if($address->state == $state->id): ?>  
+                                <?php echo e($state->name); ?>
+
+                                <?php endif; ?>
+                                <?php endforeach; ?>
+                            </h4>
+                        </div>
+                        <div class="label-box col-sm-3">
+                            <h5>City:</h5>
+                            <h4>
+                                <?php echo e($address->city); ?>
+
+                            </h4>
+                        </div>
+                        <div class="label-box col-sm-3">
+                            <h5>Zipcode:</h5>
+                            <h4><?php echo e($address->zip); ?></h4>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</section> 
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('customer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

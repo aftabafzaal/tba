@@ -1,0 +1,36 @@
+<?php $__env->startSection('content'); ?>
+<?php
+$required = 'required';
+$role_id = 4;
+?>
+<!-- <div id="fh5co-programs-section">
+    <div class="container">
+        <div class="col-sm-12">
+            <h3>Create a Free Account</h3>
+            <p>Looking to trainer? <a url="<?php echo e(url('signup/ambassador')); ?>">Sign up as our ambassador</a></p>
+            <div class="container">
+                <?php echo $__env->make('front/customers/register', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            </div>
+        </div>
+    </div>
+</div> -->
+	<section class="register-area">
+		<div class="container">
+			<div class="hed">
+				<h2>REGISTER AS A <span>USER</span></h2>
+				<p>If you are interested in joining Hammer Fit as a user, please fill this registration form.</p>
+			</div>
+
+			<div class="reg__main col-sm-12 p0">
+			<form class="register" action="<?php echo url('signUpPost'); ?>" name="register" method="post">
+			<?php echo $__env->make('front/customers/register', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<input type="hidden" name="role_id" value="<?php echo e($role_id); ?>">
+			<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+			</form>
+			</div>
+
+		</div>
+	</section>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('login_signup', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

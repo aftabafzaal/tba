@@ -1,0 +1,31 @@
+<center><h2>AWARDS/CERTIFICATES</h2></center>
+<?php if(count($certifications)>0): ?>
+<div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Title</th>
+        <th>Description</th>
+        
+        <th>Download Link</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td><?php echo e($certifications->year); ?></td>         
+          <td><?php echo e($certifications->title); ?></td>
+        <td><?php echo e($certifications->description); ?></td>      
+        <td>
+<a href="<?php echo e(url('uploads/users/'.$certifications->file)); ?>" download="<?php echo e($certifications->file); ?>" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i> Download</a></td>
+        
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+<?php else: ?>
+<div class="bg-warning">Sorry, there is no certificate added yet</div>
+<?php endif; ?>
+

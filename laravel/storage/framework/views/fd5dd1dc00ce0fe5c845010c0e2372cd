@@ -1,0 +1,215 @@
+
+
+<?php $__env->startSection('content'); ?>
+<?php
+$currency = Config::get('params.currency');
+$orderPrefix = Config::get('params.order_prefix');
+$per_month = Config::get('params.per_month');
+?>
+<style>
+    .result_img img {
+        /*height: 200px;*/
+        width: 80%; 
+    padding-left: 140px;
+    padding-right: 50px;
+        /*        padding-bottom: 50px;
+                padding-top: 50px;*/
+    }
+
+</style>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="flash-message">
+            <?php foreach(['danger', 'warning', 'success', 'info'] as $msg): ?>
+            <?php if(Session::has('alert-' . $msg)): ?>
+
+            <p class="alert alert-<?php echo e($msg); ?>"><?php echo e(Session::get('alert-' . $msg)); ?> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </div> <!-- end .flash-message -->
+        <?php echo $__env->make('admin.commons.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <div class="box box-primary">
+
+            <?php
+            $user = $data;
+            ?>        
+            <?php if($data->status == 1): ?>
+            <div class="box-body client__info">
+
+                <?php else: ?>
+                <div class="box-body">
+
+                    <?php endif; ?>
+                    <div class="row">
+                        <div class="col-sm-3 client__img">
+                            <div class="__img">
+                                <?php if($data->image == ''): ?>
+                                <img  src="<?php echo e(asset('front/images/usr.jpg')); ?>" alt="User Avatar">
+                                <?php else: ?>
+                                <img src="<?php echo e(asset('uploads/users/'.$data->image)); ?>" alt="User Avatar" style="">
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-9">
+
+                            <div class="hed col-sm-12">
+                                <h3>Account Status: 
+                                    <?php if($data->status == 1): ?>
+                                    <span class="green">Approved</span>
+                                    <?php else: ?>
+                                    <span class="red">Dispproved</span>
+                                    <?php endif; ?>
+                                </h3>
+
+                                <div class="actions pul-rgt">
+                                    <?php echo $__env->make('admin/commons/users_action', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-7 client cont p0">
+
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"> Customer's Information ( <?php if($data->role_id == 2): ?> Athlete <?php elseif($data->role_id == 4): ?> General User <?php else: ?> Ambassador <?php endif; ?> )</h3>
+                                </div>
+                                <ul>
+                                    <li>First Name:  <?php echo e($data->firstName); ?></li>
+                                    <li>Middle Name: <?php echo e($data->middleName); ?></li>
+                                    <li>Last Name: <?php echo e($data->lastName); ?></li>
+                                    <li>DOB: <?php echo e($data->dob); ?></li>
+                                    <li>Gender: <?php if($data->gender == 'f'): ?> Female <?php else: ?> Male <?php endif; ?> </li>
+                                    <li>Email: <?php echo e($data->email); ?></li>
+                                    <li>Height: <?php echo e($data->height); ?></li>
+                                    <li>Weight: <?php echo e($data->weight); ?></li>
+                                    <li>Medical Concerns: <?php echo e($data->medicalConcerns); ?></li>
+                                    <li>Goals: <?php echo e($data->goals); ?></li>
+                                    <li>Experience: <?php if($data->experience == ''): ?> Not Mentioned Yet <?php else: ?> <?php echo e($data->experience); ?>+ <?php endif; ?> </li>
+                                    <li>Member Since: <?php echo e(date('d M Y',strtotime($data->created_at))); ?></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-sm-5">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"> Address Information</h3>
+                                </div>
+                                <ul>
+                                    <li>Address :<?php echo e($data->address); ?></li>
+                                    <li>Address 2:<?php echo e($data->address2); ?></li>
+                                    <li>Phone :<?php echo e($data->phone); ?></li>
+<!--                                    <li>Mobile :<?php echo e($data->mobile); ?></li>-->
+                                    <li>Country: <?php echo e($data->countryName); ?></li>
+                                    <li>State: <?php echo e($data->stateName); ?>  </li>
+                                    <li>City: <?php echo e($data->city); ?></li>
+                                    <li>Zip Code: <?php echo e($data->zip); ?></li>
+                                </ul>
+                                <div class="col-sm-8">
+                                    <h4>Date of Next Show:</h4>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h4 class="bg-info"><?php if(is_null($shows)): ?> No Date <?php else: ?> <?php echo e(date('d/m/Y', strtotime($shows->date))); ?><?php endif; ?></h4></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <?php if(!($data->role_id == 3)): ?>
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-body client__info">
+                    <div class="box-body">  
+                        <div class="hed col-sm-12">
+                            <h3>Requested Coach: 
+                                <?php if(count($coach)>0): ?>
+                                <span><a href="<?php echo e(url('admin/client/'.$coach->id)); ?>"><?php echo e($coach->firstName); ?> <?php echo e($coach->lastName); ?></a></span>
+                                <?php else: ?>
+                                <span>No Data found. . .</span>
+                                <?php endif; ?>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <?php if($data->role_id == 2): ?>
+        <?php echo $__env->make('admin.client_athlete', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php elseif($data->role_id == 3): ?>
+        <?php echo $__env->make('admin.client_ambassador', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        
+        <?php endif; ?>
+        <?php if(!($data->role_id == 4)): ?>
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">( Total Subscriptions : <?php echo e(count($subscriptions)); ?> ) </h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+
+                    </div>
+                </div>
+                <div class="box-body" style="
+                     overflow: auto;
+                     max-height: 700px;">
+                    <ul class="products-list product-list-in-box">
+                        <?php if(count($subscriptions)>0): ?>
+                        <table class="table table-">
+                            <thead class="text-center fixed">
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach($subscriptions as $row): ?>
+                                <tr>
+                                    <td><?php
+                                        echo $i;
+                                        $i++;
+                                        ?></td>
+                                    <?php if($data->id == $row->athlete_id): ?>
+                                    <td><a href="<?php echo e(url('admin/client/'.$row->ambassador_id)); ?>" class="product-title"><?php echo e($row->ambassadorFirstname); ?> <?php echo e($row->ambassadorLastname); ?></a></td>
+                                    <?php else: ?>
+                                    <td><a href="<?php echo e(url('admin/client/'.$row->athlete_id)); ?>" class="product-title"><?php echo e($row->athleteFirstname); ?> <?php echo e($row->athleteLastname); ?></a></td>
+                                    <?php endif; ?>
+                                    <td><?php echo e(date("d/m/Y", strtotime($row->created_at))); ?></td>
+                                    <td><?php if($row->subscriptionStatus == 1): ?><span class="label label-success">SUBSCRIBED</span><?php elseif($row->subscriptionStatus == 2): ?><span class="label label-warning">UNSUBSCRIBED</span><?php endif; ?></td>
+                                    <td>
+                                        <button type="button" <?php if($row->subscriptionStatus != 1): ?>disabled="disabled"<?php endif; ?> class="btn btn-danger btn-sm delete" data-toggle="modal" data-target="#myModal" data-id="<?php echo url('admin/unsubscribe/' . $row->athlete_id); ?>"><i class="fa fa-ban"></i></button>
+                                    </td>
+
+                                </tr>
+                                <?php endforeach; ?> 
+                            </tbody>
+                            <?php echo $__env->make('admin/commons/delete_modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                        </table>
+                        <?php else: ?>
+                        <div class="bg-warning">Sorry, there is no subscription added yet </div>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
+        </div>         
+        <?php endif; ?>
+    </div>
+    <script>
+        jQuery('.delete').click(function ()
+        {
+            $('#delete').attr('href', $(this).data('id'));
+        });
+    </script>
+    <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin/admin_template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

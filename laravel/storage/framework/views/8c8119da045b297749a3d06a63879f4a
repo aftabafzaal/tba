@@ -1,0 +1,15 @@
+<?php
+$title = $model->title;
+$description = $model->teaser;
+$keywords = $model->keywords;
+?>
+<?php echo $__env->make('front/common/meta', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->startSection('content'); ?>
+
+
+
+
+<?php echo $model->body;?>
+<?php echo $__env->make('front/common/newsletters', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

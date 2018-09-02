@@ -1,0 +1,43 @@
+<div class="order-cont clrlist listview overload">
+    <div class="hed"><h3>Order <span>Total</span></h3></div>
+    <!--
+    <span class="order-total-descrp">Shipping costs and taxes will be evaluated 
+    during checkout</span>-->
+	
+    <ul>
+        <li><span class="subtotal-txt">Subtotal:</span><span class="subtotal-txt subtotal-txt2"><?php echo e($currency[Config::get('params.currency_default')]['symbol']); ?><?php echo $sum; ?></span></li>
+        <?php
+        $discount = 0;
+        //d($coupon['coupons']->id,1);
+        if (isset($coupon['coupons']->id)) {
+            $discount = $coupon['discount'];
+            ?>
+            <li><span class="subtotal-txt">Discount:</span><span class="subtotal-txt subtotal-txt2"><?php echo e($currency[Config::get('params.currency_default')]['symbol']); ?><?php echo $discount; ?></span></li> 
+            <?php
+        }
+        ?>                           
+        <li><span class="subtotal-txt">Total:</span><span class="subtotal-txt subtotal-txt2"><?php echo e($currency[Config::get('params.currency_default')]['symbol']); ?><?php echo $sum - $discount; ?></span></li>
+    </ul>
+</div>
+<div class="order-cont order-cont2 overload">
+    <span class="order-total-head">Apply Discount Coupon</span>
+    <?php if(Session::has('error')): ?>
+    <div class="alert alert-warning">
+        <?php echo session('error'); ?>
+
+    </div>
+    <?php endif; ?>
+    <form class="" action="<?php echo url(); ?>/coupons/apply" method="post">
+        <input type="hidden"  name="_token" value="<?php echo e(csrf_token()); ?>" />
+		<div class="input-group">
+		  <input required type="text" name="coupon" id="coupon" class="form-control" placeholder="Coupon" />
+		  <span class="input-group-addon">
+			<input type="submit" value="Apply" />
+		  </span>
+		</div>
+		
+        <input type="hidden" name="subTotal" value="<?php echo $sum; ?>"/>
+
+
+    </form>
+</div>

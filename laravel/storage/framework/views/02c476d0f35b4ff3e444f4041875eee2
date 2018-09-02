@@ -1,0 +1,129 @@
+<?php $__env->startSection('content'); ?>
+
+<section class="touch-area">
+<div class="container">
+			<div class="hed">
+				<h2>GET IN <span>TOUCH</span></h2>
+				<p>Thanks for getting in touch with us</p>
+			</div>
+			<div class="row">
+				<div class="touch__box clrlist list-icon col-sm-4">
+					<div class="touch__inr">
+						<ul>
+							<li><i class="fa fa-phone"></i>
+								<h4>PHONE NUMBER</h4>
+								<p>414 803 4327</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="touch__box clrlist list-icon col-sm-4">
+					<div class="touch__inr">
+						<ul>
+							<li><i class="fa fa-envelope"></i>
+								<h4>EMAIL ADDRESS</h4>
+								<p><a href="mailto:admin@hammerfit.net">admin@hammerfit.net</a></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="touch__box clrlist list-icon col-sm-4">
+					<div class="touch__inr">
+						<ul>
+							<li><i class="fa fa-map-marker"></i>
+								<h4>LOCATION ADDRESS</h4>
+								<p>Indianapolis, IN 46278</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section class="contact-area">
+		<div class="container">
+			<div class="hed">
+				<h2>CONTACT <span>US</span></h2>
+				<p>Thanks for getting in touch with us</p>
+			</div>
+			<div class="flash-message">
+			<?php foreach(['danger', 'warning', 'success', 'info'] as $msg): ?>
+			<?php if(Session::has('alert-' . $msg)): ?>
+
+			<p class="alert alert-<?php echo e($msg); ?>"><?php echo e(Session::get('alert-' . $msg)); ?> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+			<?php endif; ?>
+			<?php endforeach; ?>
+			</div> <!-- end .flash-message -->
+			<div class="contact__form col-sm-12 p0">
+				<form method="POST" action="<?php echo e(URL::to('contact-send')); ?>">
+					<div class="row">
+						<div class="form-group col-sm-6">
+						  <input type="text" name="f_name" class="form-control" id="firstName" placeholder="First Name" required="required" value="<?php echo e(old('f_name')); ?>">
+						    <?php if($errors->has('f_name')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('f_name')); ?></strong>
+                                    </span>
+                            <?php endif; ?>
+						</div>
+						<div class="form-text col-sm-6">
+						  <input type="text" name="l_name" class="form-control" id="lastName" placeholder="Last Name" required="required" value="<?php echo e(old('l_name')); ?>">
+						    <?php if($errors->has('l_name')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('l_name')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-6">
+						  <input type="email" name="email" class="form-control" id="email" placeholder="Email Address" required="required" value="<?php echo e(old('email')); ?>">
+						    <?php if($errors->has('email')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('email')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+						</div>
+						<div class="form-text col-sm-6">
+						  <input type="text" name="phone_number" class="form-control" id="phoneNumber" placeholder="Phone Number" required="required" value="<?php echo e(old('phone_number')); ?>">
+						    <?php if($errors->has('phone_number')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('phone_number')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-12">
+						  <textarea class="form-control" name="message" rows="9" id="comment" placeholder="Your Message!" required="required"><?php echo e(old('message')); ?></textarea>
+						    <?php if($errors->has('message')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('message')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 p0">
+							<div class="form-group col-sm-6">
+							<span class="captcha-img"><?php echo Recaptcha::render(); ?></span>
+										<?php if($errors->has('g-recaptcha-response')): ?>
+							<span class="help-block">
+								<strong><?php echo e($errors->first('g-recaptcha-response')); ?></strong>
+							</span>
+							<?php endif; ?> 
+							</div>
+							
+							<div class="form-group col-sm-6">
+								<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+								<button type="submit" class="btn btn-default contact__submit">SUBMIT</button>
+							</div>
+						</div>
+				</form>
+			</div>
+		</div>
+	</section>
+<?php echo $__env->make('front/common/newsletters', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,99 @@
+<?php $__env->startSection('content'); ?>
+<?php
+$required = 'required';
+?>
+<section class="dashboard-area">
+    <div class="container">
+        <?php if(count($errors->register) > 0): ?>
+        <div class="alert alert-danger alert-dismissable clrlist listview">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Whoops!</strong> There were some problems with your input.
+            <ul>
+                <?php foreach($errors->register->all() as $error): ?>
+                <li><?php echo e($error); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php endif; ?>
+
+        <?php if(Session::has('success')): ?>
+        <div class="alert alert-success alert-dismissable clrlist listview">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <p><i class="icon fa fa-check"></i> &nbsp  <?php echo session('success'); ?></p>
+        </div>
+        <?php endif; ?>
+        <div class="dash__lft col-sm-3">
+            <div class="dash__tabs">
+                <?php echo $__env->make('front/common/left', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            </div>
+        </div>
+        <div class="dash__rgt col-sm-9">
+            <div class="tab-content">
+                <div id="profile" class="tab-pane fade active in">
+                    <div class="profile__dtl col-sm-12">
+
+                        <?php echo Form::model($user, ['files' => true,'class' => 'form','url' => ['updateprofile'], 'method' => 'post']); ?>
+
+                        <div class="form-group col-sm-4">
+                            <?php echo Form::label('First Name'); ?>
+
+                            <?php echo Form::text('firstName', null , array('class' => 'form-control',$required) ); ?>
+
+                        </div>
+                        <div class="form-group col-sm-4 ">
+                            <?php echo Form::label('Middle Name'); ?>
+
+                            <?php echo Form::text('middleName', null , array('class' => 'form-control') ); ?>
+
+                        </div>
+                        <div class="form-group col-sm-4 ">
+                            <?php echo Form::label('Last Name'); ?>
+
+                            <?php echo Form::text('lastName', null , array('class' => 'form-control',$required) ); ?>
+
+                        </div>
+
+                        <div class="form-group col-sm-12">
+                            <?php echo Form::label('email'); ?>
+
+                            <?php echo Form::text('email', null , array('class' => 'form-control',$required) ); ?>
+
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <?php echo Form::label('phone'); ?> *
+                            <?php echo Form::text('phone', isset($address->phone) ? $address->phone : null , array('placeholder'=>"Phone *",'class' => 'form-control',$required) ); ?>
+
+                        </div>
+                        <?php echo Form::hidden('address_id', isset($address->id) ? $address->id : null ); ?>
+
+
+
+
+                        <div class="col-md-12 fit__sub__reset clrlist">
+                            <?php echo Form::hidden('address_id', isset($address->id) ? $address->id : null ); ?>
+
+                            <button type="submit" class="fit__submit">Update</button>
+                            <button type="button" class="fit__reset" onclick="back()">Back</button>
+                        </div>
+
+                        <?php echo Form::close(); ?>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+	<script>
+		window.setTimeout(function() {
+			jQuery(".alert").fadeTo(500, 0).slideUp(500, function(){
+				jQuery(this).remove(); 
+			});
+		}, 4000);
+	</script>
+	
+</section>  
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('customer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

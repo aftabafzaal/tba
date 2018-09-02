@@ -1,0 +1,77 @@
+<?php $__env->startSection('content'); ?>
+
+
+<!-- Main row -->
+<div class="row">
+    <!-- Left col -->
+    <div class="col-md-12" >
+        <div class="flash-message">
+            <?php foreach(['danger', 'warning', 'success', 'info'] as $msg): ?>
+            <?php if(Session::has('alert-' . $msg)): ?>
+
+            <p class="alert alert-<?php echo e($msg); ?>"><?php echo e(Session::get('alert-' . $msg)); ?> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </div> <!-- end .flash-message -->
+        <!-- PRODUCT LIST -->
+        <div class="box-body table-responsive no-padding">
+
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Specialities( Total : <?php echo e(count($specialities)); ?> ) </h3>
+
+                        <div class="box-tools pull-right">
+                            <a class="btn btn-sm btn-info btn-flat" href="<?php echo e(url('admin/specialities/create')); ?>">Add new Speciality</a>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table no-margin">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Added</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($specialities as $row): ?>
+                                <tr>
+                                    <td><a href="specialities/edit/<?php echo $row->id ?>" class="product-title"><?php echo $row->id; ?></a></td>
+                                    <td><a href="specialities/edit/<?php echo $row->id ?>" class="product-title"><?php echo $row->title; ?></a></td>
+                                    <td><?php echo $row->description; ?></td>
+                                    <td><?php echo $row->created_at; ?></td>
+                                    <td><button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#myModal" data-id="specialities/delete/<?php echo $row->id ?>"><i class="fa fa-trash"></i></button></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            <?php echo $__env->make('admin/commons/delete_modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                </div>
+                <!-- /.box-footer -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    jQuery('.delete').click(function ()
+    {
+        $('#delete').attr('href', $(this).data('id'));
+    });
+</script>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin/admin_template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

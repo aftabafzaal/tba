@@ -1,0 +1,518 @@
+
+<?php $__env->startSection('content'); ?>
+<div class="flash-message">
+    <?php foreach(['danger', 'warning', 'success', 'info'] as $msg): ?>
+    <?php if(Session::has('alert-' . $msg)): ?>
+
+    <p class="alert alert-<?php echo e($msg); ?>"><?php echo e(Session::get('alert-' . $msg)); ?> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+    <?php endif; ?>
+    <?php endforeach; ?>
+</div> <!-- end .flash-message -->
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Dashboard
+        <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>
+                        <?php echo e(count($totalUsers)); ?>
+
+                    </h3>
+                    <p>
+                        User Registrations
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="<?php echo e(url('admin/clients')); ?>" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div><!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>
+                        <?php echo e(count($totalOrders)); ?>
+
+                    </h3>
+                    <p>
+                        Total Orders
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="<?php echo e(url('admin/orders')); ?>" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div><!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>
+                        <?php echo e(count($totalSubscriptions)); ?>
+
+                    </h3>
+                    <p>
+                        Total Current Subscriptions
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-calendar-check-o"></i>
+                </div>
+                <a href="<?php echo e(url('admin/current-subscriptions')); ?>" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div><!-- ./col -->
+
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3>
+                        <?php echo e(count($totalTransactions)); ?>
+
+                    </h3>
+                    <p>
+                        Total Transactions
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-money"></i>
+                </div>
+                <a href="<?php echo e(url('admin/transactions')); ?>" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div><!-- ./col -->
+    </div><!-- /.row -->
+    
+    <h2>
+        Monthly
+        <small>Updates</small>
+    </h2>
+    
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-person-add"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Members</span>
+                    <span class="info-box-number">
+                        <?php if(count($usersMonthly) > 0): ?><?php echo e(count($usersMonthly)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/monthly/'.$type='users')); ?>" class="bg-yellow">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+
+            </div>
+
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="ion ion-bag"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Orders</span>
+                    <span class="info-box-number">
+                        <?php if(count($ordersMonthly) > 0): ?><?php echo e(count($ordersMonthly)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/monthly/'.$type='orders')); ?>" class="bg-aqua">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-calendar-check-o"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Subscriptions</span>
+                    <span class="info-box-number">
+                        <?php if(count($subscriptionsMonthly) > 0): ?><?php echo e(count($subscriptionsMonthly)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/monthly/'.$type='subscriptions')); ?>" class="bg-green">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-money"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Transactions</span>
+                    <span class="info-box-number">
+                        <?php if(count($transactionsMonthly) > 0): ?><?php echo e(count($transactionsMonthly)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/monthly/'.$type='transactions')); ?>" class="bg-red">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+    <h2>
+        Weekly
+        <small>Updates</small>
+    </h2>
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-person-add"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Members</span>
+                    <span class="info-box-number">
+                        <?php if(count($usersWeekly) > 0): ?><?php echo e(count($usersWeekly)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/weekly/'.$type='users')); ?>" class="bg-yellow">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="ion ion-bag"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Orders</span>
+                    <span class="info-box-number">
+                        <?php if(count($ordersWeekly) > 0): ?><?php echo e(count($ordersWeekly)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/weekly/'.$type='orders')); ?>" class="bg-aqua">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-calendar-check-o"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Subscriptions</span>
+                    <span class="info-box-number">
+                        <?php if(count($subscriptionsWeekly) > 0): ?><?php echo e(count($subscriptionsWeekly)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/weekly/'.$type='subscriptions')); ?>" class="bg-green">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-money"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Transactions</span>
+                    <span class="info-box-number">
+                        <?php if(count($transactionsWeekly) > 0): ?><?php echo e(count($transactionsWeekly)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/weekly/'.$type='transactions')); ?>" class="bg-red">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+    <h2>
+        Daily
+        <small>Updates</small>
+    </h2>
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-person-add"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Members</span>
+                    <span class="info-box-number">
+                        <?php if(count($usersToday) > 0): ?><?php echo e(count($usersToday)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/daily/'.$type='users')); ?>" class="bg-yellow">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="ion ion-bag"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Orders</span>
+                    <span class="info-box-number">
+                        <?php if(count($ordersToday) > 0): ?><?php echo e(count($ordersToday)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/daily/'.$type='orders')); ?>" class="bg-aqua">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-calendar-check-o"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Subscriptions</span>
+                    <span class="info-box-number">
+                        <?php if(count($subscriptionsToday) > 0): ?><?php echo e(count($subscriptionsToday)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/daily/'.$type='subscriptions')); ?>" class="bg-green">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-money"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">New Transactions</span>
+                    <span class="info-box-number">
+                        <?php if(count($transactionsToday) > 0): ?><?php echo e(count($transactionsToday)); ?> <?php else: ?> <?php echo e(0); ?> <?php endif; ?>
+                    </span>
+                    <span class="info-box-number">
+                        <a href="<?php echo e(url('admin/daily/'.$type='transactions')); ?>" class="bg-red">
+                            More info <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+    </div>
+
+    <!--    <div class="row">
+            
+            <div class="col-sm-4">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Current Month`s Users (Total: <?php echo e(count($usersMonthly)); ?> )</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <?php if(count($usersMonthly) > 0): ?>
+                        <ul class="products-list product-list-in-box" style="
+                            overflow: auto;
+                            max-height: 500px;">
+                            <table class="table" id="order_table">
+                                <thead>
+                                    <tr>                            
+                                        <th>Name</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($usersMonthly as $row): ?>
+                                    <tr>         
+                                        <td><a href="<?php echo e(url('admin/client/'.$row->id)); ?>"><?php echo $row->firstName . ' ' . $row->lastName; ?></a></td> 
+                                        <td><?php echo date("d/m/Y", strtotime($row->created_at)); ?></td>
+                                        <td><?php if ($row->status) { ?><span class="label label-success">Approved</span><?php } else { ?><span class="label label-danger">Disapproved</span><?php } ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </ul>
+                        <?php else: ?>
+                        <div class="col-sm-12">
+                            <h5>No Data found . . . </h5>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-4">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Current Week`s Users (Total: <?php echo e(count($usersWeekly)); ?> )</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <?php if(count($usersWeekly) > 0): ?>
+                        <ul class="products-list product-list-in-box" style="
+                            overflow: auto;
+                            max-height: 500px;">
+                            <table class="table" id="order_table">
+                                <thead>
+                                    <tr>                            
+                                        <th>Name</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($usersWeekly as $row): ?>
+                                    <tr>         
+                                        <td><a href="<?php echo e(url('admin/client/'.$row->id)); ?>"><?php echo $row->firstName . ' ' . $row->lastName; ?></a></td> 
+                                        <td><?php echo date("d/m/Y", strtotime($row->created_at)); ?></td>
+                                        <td><?php if ($row->status) { ?><span class="label label-success">Approved</span><?php } else { ?><span class="label label-danger">Disapproved</span><?php } ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </ul>
+                        <?php else: ?>
+                        <div class="col-sm-12">
+                            <h5>No Data found . . . </h5>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-4">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Current Day`s Users (Total: <?php echo e(count($usersToday)); ?> )</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i> </button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <?php if(count($usersToday) > 0): ?>
+                        <ul class="products-list product-list-in-box" style="
+                            overflow: auto;
+                            max-height: 500px;">
+                            <table class="table" id="order_table">
+                                <thead>
+                                    <tr>                            
+                                        <th>Name</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($usersToday as $row): ?>
+                                    <tr>         
+                                        <td><a href="<?php echo e(url('admin/client/'.$row->id)); ?>"><?php echo $row->firstName . ' ' . $row->lastName; ?></a></td> 
+                                        <td><?php echo date("d/m/Y", strtotime($row->created_at)); ?></td>
+                                        <td><?php if ($row->status) { ?><span class="label label-success">Approved</span><?php } else { ?><span class="label label-danger">Disapproved</span><?php } ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </ul>
+                        <?php else: ?>
+                        <div class="col-sm-12">
+                            <h5>No Data found . . . </h5>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            
+        </div>-->
+</section>   
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin/admin_template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

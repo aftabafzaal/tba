@@ -1,0 +1,11 @@
+<ul class="nav nav-pills nav-stacked">
+    <?php
+    $role = Auth::user()->role->role;
+    ?>
+    
+    <li class=""><a href="<?php echo e(url('profile')); ?>"><i class="fa fa-user"></i>Personal</a></li>
+    <li class=""><a href="<?php echo e(url('address')); ?>"><i class="fa fa-location-arrow"></i>Address</a></li>
+    <li ><a href="<?php echo e(url('myorders')); ?>" ><i class="fa fa-shopping-bag"></i>My Orders</a></li>
+    <li><a href="<?php echo e(url('changepassword')); ?>" ><i class="fa fa-key"></i>Change Password</a></li>
+    <li><a href="<?php echo e(url('auth/logout')); ?>"><i class="fa fa-sign-out"></i>Log Out</a></li>
+</ul>

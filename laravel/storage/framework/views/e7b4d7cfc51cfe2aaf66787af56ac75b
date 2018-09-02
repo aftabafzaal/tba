@@ -1,0 +1,25 @@
+<?php
+$title = 'Oops!';
+$description = '';
+$keywords = '';
+?>
+<?php echo $__env->make('front/common/meta', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    <i class="fa fa-exclamation-triangle" style="color:red"></i> 404 Not Found</h2>
+
+                <h3>Sorry, an error has occured, Requested page not found!</h3>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

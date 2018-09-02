@@ -1,0 +1,9 @@
+<li><a href="<?php echo e(url('profile-picture')); ?>" ><i class="fa fa-picture-o"></i> Profile Picture</a></li>
+<li><a href="<?php echo e(url('shows')); ?>" ><i class="fa fa-eye"></i> Shows</a></li>
+<li><a href="<?php echo e(url('results')); ?>" ><i class="fa fa-picture-o"></i> Albums</a></li>
+<li class=""><a href="<?php echo e(url('professional')); ?>"><i class="fa fa-male"></i> Professional</a></li>
+<li class=""><a href="<?php echo e(url('certifications')); ?>"><i class="fa fa-trophy"></i> Awards/Certifications</a></li>
+<li class=""><a href="<?php echo e(url('subscriptions')); ?>"><i class="fa fa-envelope"></i> Subscriptions</a></li>
+<!--<li class=""><a href="<?php echo e(url('meal-plans')); ?>"><i class="fa fa-cutlery"></i> Meal Plans</a></li>
+<li class=""><a href="<?php echo e(url('workout-plans')); ?>"><i class="fa fa-universal-access"></i> Workout Plans</a></li>-->
+<li class=""><a href="<?php echo e(url('user/'.Auth::user()->id)); ?>"><i class="fa fa-user"></i> Public Profile</a></li>

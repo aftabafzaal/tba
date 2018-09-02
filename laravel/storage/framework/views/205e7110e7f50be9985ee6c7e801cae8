@@ -1,0 +1,35 @@
+<?php $__env->startSection('content'); ?>
+<div class="row">
+    <div class="col-md-12">
+      <!-- Horizontal Form -->
+      <!-- /.box -->
+      <!-- general form elements disabled -->
+      <div class="box box-warning">
+      <?php if(Session::has('success')): ?>
+		<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> Success !</h4>
+            <?php echo session('success'); ?>
+
+        </div>
+		<?php endif; ?>
+        <div class="box-header with-border">
+          <h3 class="box-title">Add New Value</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <?php echo Form::open(array( 'class' => 'form','url' => 'admin/attributes_values/insert', 'files' => true)); ?>
+
+            <!-- text input -->
+            <?php echo $__env->make('admin.attributes_values.form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+           
+          <?php echo Form::close(); ?>
+
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin/admin_template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
