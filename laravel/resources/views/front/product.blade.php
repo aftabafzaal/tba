@@ -26,21 +26,6 @@ $thumbHeight = (int) $height / 2;
         overflow:   hidden;
         width:      <?php echo $thumbWidth; ?>px;
         }
-
-
-        .style-serif{
-            color:#ffff00;
-            font-weight: 400;
-            font-size: 30px;
-            font-family: serif;
-        }
-
-        .style-serif-large{
-            color:#ffff00;
-            font-weight: 800;
-            font-size: 60px;
-            font-family: serif;
-        }
     </style>
 
     <div class="container">
@@ -87,8 +72,8 @@ $thumbHeight = (int) $height / 2;
         </div>
     </div>
 
-    <div id="large" style="display: block;background: url({{ asset('uploads/products')}}/<?php echo $product->image; ?>) 0 0 no-repeat;width:<?php echo $width; ?>px;height:<?php echo $height; ?>px;">
-        <div  data-value="1" data-type="text" id="front_large" style="text-align: center;width: <?php echo $product->textWidth * 2; ?>px; left: <?php echo $product->left * 2 ?>px; top: <?php echo $product->top * 2 ?>px; display: block; position: relative;"><span id='front_text_large' style='font-size:<?php echo $product->fontSize * 2 ?>px;font-weight:<?php echo $product->fontWeight * 2 ?>;color:#<?php echo $product->color ?>;font-family:<?php echo $styles[$product->style]; ?>; '  ></span></div>
+    <div id="large" style="height:200px;display: none;background: url({{ asset('uploads/products')}}/<?php echo $product->image; ?>) 0 0 no-repeat;width:<?php echo $width; ?>px;height:<?php echo $height; ?>px;">
+        <div  data-value="1" data-type="text" id="front_large" style="line-height: 1.5;display: inline-block;text-align: center;width: <?php echo $product->textWidth * 2; ?>px; padding-left: <?php echo $product->left * 2 ?>px; padding-top: <?php echo $product->top * 2 ?>px; display: block; position: relative;"><span id='front_text_large' style='font-size:<?php echo $product->fontSize * 2 ?>px;font-weight:<?php echo $product->fontWeight * 2 ?>;color:#<?php echo $product->color ?>;font-family:<?php echo $styles[$product->style]; ?>; '  ></span></div>
     </div>
 
     <script>
@@ -107,7 +92,7 @@ $thumbHeight = (int) $height / 2;
         function addText()
         {
             var textfields = "<p><input maxlength='<?php echo $product->textLimit ?>' class='form-control input_text' onkeyup=\"setText()\" type='text' onfocus=\"setDraggableActions('" + textDivCount + "')\" data-value='" + textDivCount + "' id='front_text_" + textDivCount + "' placeHolder='Name' /></p>";
-            var textDiv = "<div data-value='" + textDivCount + "' data-type='text' id='front_div_" + textDivCount + "' style='height:100px;width: <?php echo $product->textWidth; ?>px;left: <?php echo $product->left ?>px; top: <?php echo $product->top ?>px;display: block;position:relative;text-align: center;' ><span id='text_" + textDivCount + "' style='font-size:<?php echo $product->fontSize ?>px;font-weight:<?php echo $product->fontWeight ?>;display: inline-block; color:#<?php echo $product->color ?>;font-family:<?php echo $styles[$product->style]; ?>;' ></span></div>";
+            var textDiv = "<div data-value='" + textDivCount + "' data-type='text' id='front_div_" + textDivCount + "' style='height:100px;line-height: 1.5;display: inline-block;width: <?php echo $product->textWidth; ?>px;left: <?php echo $product->left ?>px;top: <?php echo $product->top ?>px;position:relative;text-align: center;' ><span id='text_" + textDivCount + "' style='font-size:<?php echo $product->fontSize ?>px;font-weight:<?php echo $product->fontWeight ?>;display: inline-block; color:#<?php echo $product->color ?>;font-family:<?php echo $styles[$product->style]; ?>;' ></span></div>";
             $("#text_fields").append(textfields);
             $("#draggable-zone").append(textDiv);
             textDivCount++;
@@ -151,8 +136,8 @@ $thumbHeight = (int) $height / 2;
         function update(id) {
             $('#text_' + id).html($('#front_text_' + id).val());
             $('#front_text_large').html($('#front_text_' + id).val());
-            $('#front_div_' + id).textfill({minFontPixels: 60, maxFontPixels:100 ,changeLineHeight: false,widthOnly: true});
-            $('#front_large').textfill({minFontPixels: 120,maxFontPixels:200, changeLineHeight: false,widthOnly: true});
+            $('#front_div_' + id).textfill({minFontPixels: 10, maxFontPixels: <?php echo $product->fontSize ?>, changeLineHeight: true, widthOnly: false});
+            $('#front_large').textfill({minFontPixels: 20, maxFontPixels: <?php echo $product->fontSize *2 ?>, changeLineHeight: true, widthOnly: false});
 
         }
 

@@ -62,7 +62,7 @@ class ProductsController extends AdminController {
             'key' => 'required|unique:urls'
         ];
 
-        $rules['image'] = 'required|mimes:jpeg';
+        //$rules['image'] = 'required|mimes:jpeg|jpg';
 
         $validator = Validator::make($request->all(), $rules);
         $fileName = "";
@@ -165,7 +165,7 @@ class ProductsController extends AdminController {
             'key' => 'required|unique:urls,type_id,' . $request->id
         ];
 
-        $rules['image'] = 'mimes:jpeg|jpg';
+        //$rules['image'] = 'mimes:jpeg|jpg';
 
 
         $validator = Validator::make($request->all(), $rules);
