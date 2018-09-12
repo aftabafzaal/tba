@@ -69,8 +69,8 @@ class CartController extends Controller {
         $coupon = array();
         $cart = Cart::getCart($this->sessionId);
         Session::put('cart', $cart);
-        $sessionId=$this->sessionId;
-        return view('front.cart.view', compact('cart','sessionId'));
+        $sessionId = $this->sessionId;
+        return view('front.cart.view', compact('cart', 'sessionId'));
     }
 
     public function addsimple(Request $request) {

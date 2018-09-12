@@ -56,9 +56,6 @@ class ProductsController extends AdminController {
         $rules = [
             'name' => 'required|max:100',
             'price' => 'required|numeric',
-            'top' => 'required|numeric',
-            'left' => 'required|numeric',
-            'textLimit' => 'required|numeric',
             'key' => 'required|unique:urls'
         ];
 
@@ -85,11 +82,6 @@ class ProductsController extends AdminController {
         $model = new Products;
         $model->name = $request->name;
         $model->price = $request->price;
-        $model->keywords = $request->keywords;
-        $model->top = $request->top;
-        $model->left = $request->left;
-        $model->textLimit = $request->textLimit;
-        $model->textWidth = $request->textWidth;
         $model->image = $fileName;
         $model->save();
         $product_id = $model->id;

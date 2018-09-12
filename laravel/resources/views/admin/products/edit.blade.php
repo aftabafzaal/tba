@@ -16,7 +16,7 @@
             </div>
             @endif
             <div class="box-header with-border">
-                <h3 class="box-title">Edit Product</h3>
+                <h3 class="box-title">Edit Designs</h3>
             </div>
 
             <!-- /.box-header -->

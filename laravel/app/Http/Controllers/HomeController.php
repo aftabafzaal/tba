@@ -13,7 +13,7 @@ use App\States;
 use DB;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image as Image;
-
+use App\Options;
 class HomeController extends Controller {
 
     protected $categories = array();
@@ -106,7 +106,8 @@ class HomeController extends Controller {
         $product = Products::find($id);
         $productImages = ProductsImages::where('product_id', '=', $id)->get();
         $default = Attributesvalues::getDefault($id);
-        return view('front.product', compact('product', 'default', 'productImages'))->with('id', $id);
+        $options = Options::where('product_id', '=', $id)->get();
+        return view('front.product', compact('product', 'default', 'productImages', 'options'))->with('id', $id);
     }
 
     public function sale() {

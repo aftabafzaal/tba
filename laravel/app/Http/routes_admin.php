@@ -61,6 +61,14 @@ Route::group(
     Route::get('products/edit/{id}', $admin . 'ProductsController@edit');
     Route::post('products/update/{id}', $admin . 'ProductsController@update');
 
+
+    Route::get('options/{product_id}', $admin . 'OptionsController@get');
+    Route::get('options/create/{product_id}', $admin . 'OptionsController@create');
+    Route::post('options/insert', $admin . 'OptionsController@insert');
+    Route::get('options/delete/{id}', $admin . 'OptionsController@delete');
+    Route::get('options/edit/{id}', $admin . 'OptionsController@edit');
+    Route::post('options/update/{id}', $admin . 'OptionsController@update');
+
     Route::get('productsimages', $admin . 'ProductsimagesController@index');
     Route::get('productsimages/manage/{id}', $admin . 'ProductsimagesController@manage');
     Route::post('productsimages/insert', $admin . 'ProductsimagesController@insert');

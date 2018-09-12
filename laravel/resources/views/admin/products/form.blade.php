@@ -23,40 +23,6 @@ $required = "required";
     {!! Form::text('price', null , array('class' => 'form-control',$required) ) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('Text Limit') !!}
-    {!! Form::text('textLimit', null , array('class' => 'form-control') ) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('Text Top Position') !!}
-    {!! Form::text('top', null , array('class' => 'form-control') ) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('Text Left Position') !!}
-    {!! Form::text('left', null , array('class' => 'form-control') ) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('Text Width') !!}
-    {!! Form::text('textWidth', null , array('class' => 'form-control') ) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('Font Color') !!}
-    {!! Form::text('color', null , array('class' => 'form-control','id' => 'color') ) !!}
-</div>
-
-<div class="form-group">
-    {!! Form::label('Font Size') !!}
-    {!! Form::text('fontSize', null , array('class' => 'form-control') ) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('Font Weight') !!}
-    {!! Form::text('fontWeight', null , array('class' => 'form-control') ) !!}
-</div>
-<div class="form-group" >
-    {!! Form::label('Style') !!}
-    {!!Form::select('style',$styles,null,array('class' => 'form-control select','id'=>'style'))!!}
-</div>
-
-<div class="form-group">
     {!! Form::label('image') !!}
     {!! Form::file('image', null,array($required,'class'=>'form-control')) !!}
 </div>

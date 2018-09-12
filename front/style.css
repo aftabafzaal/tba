@@ -29,9 +29,35 @@
         font-weight: normal;
         src: local('Proxima Nova Regular'), url('css/ProximaNovaRegular.woff') format('woff');
 }
+
+
+
 */
 
 /**********STYLIZED CLASSES***********/
+
+
+@font-face {
+    font-family: Chawp;
+    src: url(fonts/chawp.regular.otf);
+    src: url(fonts/chawp.regular.ttf);
+}
+
+@font-face {
+    font-family: EraserDust;
+    src: url(fonts/EraserDust.ttf);
+}
+
+@font-face {
+    font-family: KGSecondChancesSketch;
+    src: url(fonts/KGSecondChancesSketch.ttf);
+}
+
+
+@font-face {
+    font-family: KGNexttoMeSketched;
+    src: url(fonts/KGNexttoMeSketched.ttf);
+}
 
 .preloadized { overflow: hidden; }
 .preloadized #preloader { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; z-index: 99999; }
@@ -43,6 +69,24 @@ body, html{ height: 100%; padding: 0;}
 html.hint * { box-shadow: 0 0 0 1px #d00 inset; }
 
 body .navbar-brand {padding: 5px; max-width: 200px;}
+
+.Chawp{
+    font-family: "Chawp";
+}
+
+.EraserDust{
+    font-family: "EraserDust";
+}
+
+
+.KGSecondChancesSketch{
+    font-family: "KGSecondChancesSketch";
+}
+
+.KGNexttoMeSketched{
+    font-family: "KGNexttoMeSketched";
+}
+
 
 body{font-family: "Open Sans", "Helvetica", "Helvetica Neue",Arial,sans-serif; overflow-x: hidden; color:#cb5177;}
 

@@ -67,6 +67,13 @@ class SignupController extends Controller {
         if ($this->auth->attempt($credentials, $request->has('remember'))) {
             session_start();
             $role = Auth::user()->role->role;
+            
+            if ($role == 'admin') {
+                return redirect('admin');
+            }
+            
+            
+            
             $cart = Cart::countCart(session_id());
             if ($cart > 0) {
                 $cart = Cart::where('session_id', '=', session_id())->get();
@@ -81,9 +88,9 @@ class SignupController extends Controller {
             if ($role == 'user') {
                 return redirect('/');
             }
-            if ($role == 'admin') {
-                return redirect('admin');
-            }
+            
+            
+            
             return redirect()->intended($this->redirectPath());
         }
 

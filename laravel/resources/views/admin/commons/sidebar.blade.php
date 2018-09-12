@@ -37,11 +37,11 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>Products</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-dashboard"></i> <span>Designs</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu" style="display: none;">
-                        <li><a href="{{ url('admin/products?type=simple') }}"><i class="fa fa-circle-o"></i>List Products</a></li>
-                        <li><a href="{{ url('admin/products/create?type=simple') }}"><i class="fa fa-circle-o"></i> Add New Product</a></li>
+                        <li><a href="{{ url('admin/products?type=simple') }}"><i class="fa fa-circle-o"></i>List Designs</a></li>
+                        <li><a href="{{ url('admin/products/create?type=simple') }}"><i class="fa fa-circle-o"></i> Add New Design</a></li>
 
                     </ul>
                 </li>

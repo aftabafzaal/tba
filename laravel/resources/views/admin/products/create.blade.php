@@ -16,7 +16,7 @@
         </div>
 		@endif
         <div class="box-header with-border">
-          <h3 class="box-title">Add New Product</h3>
+          <h3 class="box-title">Add New Design</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">

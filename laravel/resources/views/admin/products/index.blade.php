@@ -1,7 +1,9 @@
 @extends('admin/admin_template')
 
 @section('content')
-
+<?php
+$currency = Config::get('params.currency');
+?>
 
 <!-- Main row -->
 <div class="row">
@@ -13,10 +15,10 @@
             <div class="box box-info">
                 <div class="box-header with-border">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Products( Total : {{ count($products) }} ) </h3>
+                        <h3 class="box-title">Designs( Total : {{ count($products) }} ) </h3>
 
                         <div class="box-tools pull-right">
-                            <a class="btn btn-sm btn-info btn-flat" href="{{url('admin/products/create')}}">Add new product</a>
+                            <a class="btn btn-sm btn-info btn-flat" href="{{url('admin/products/create')}}">Add new designs</a>
 
                         </div>
                     </div>
@@ -29,10 +31,9 @@
                                 <tr>
                                     <th> </th>
                                     <th>Product ID</th>
-                                    <th>SKU</th>
                                     <th>Title</th>
+                                    <th>Price</th>
                                     <th>Added</th>
-                                    <th>Short Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -41,11 +42,11 @@
                                 <tr>
                                     <td><img height="70px" src="{{ asset('uploads/products/thumbnail')}}/<?php echo $row->image; ?>" alt="<?php echo $row->name; ?>" /></td>
                                     <td><a href="products/edit/<?php echo $row->id ?>" class="product-title"><?php echo $row->id; ?></a></td>
-                                    <td><a href="products/edit/<?php echo $row->id ?>" class="product-title"><?php echo $row->sku; ?></a></td>
                                     <td><a href="products/edit/<?php echo $row->id ?>" class="product-title"><?php echo $row->name; ?></a></td>
+                                    <td>{{ $currency[Config::get('params.currency_default')]['symbol']}} <?php echo $row->price; ?></td>
                                     <td><?php echo $row->created_at; ?></td>
-                                    <td><?php echo $row->teaser; ?></td>
                                     <td>
+                                        <a class="btn btn-sm btn-info btn-flat"  href="options/<?php echo $row->id ?>" >Manage Options</a>
                                         <a class="btn btn-sm btn-warning btn-flat"  href="productsimages/manage/<?php echo $row->id ?>" >Manage Images</a>
                                         <a class="btn btn-sm btn-danger btn-flat"  href="products/delete/<?php echo $row->id ?>" >X</a>
                                     </td>
